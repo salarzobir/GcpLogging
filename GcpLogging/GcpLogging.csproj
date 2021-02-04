@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Audit.Mvc.Core" Version="16.4.3" />
     <PackageReference Include="Google.Apis.Auth" Version="1.49.0" />
     <PackageReference Include="Google.Cloud.Diagnostics.AspNetCore3" Version="4.2.0" />
     <PackageReference Include="Google.Protobuf" Version="3.14.0" />

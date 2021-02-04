@@ -16,6 +16,7 @@ namespace GcpLogging.Controllers
 
         public IActionResult Index()
         {
+            _logger.LogInformation("testtttt");
             return View();
         }
 

@@ -13,10 +13,12 @@ namespace GcpLogging.Controllers
             _httpClientFactory = httpClientFactory;
         }
 
-        public async Task<string> Posts()
+        public async Task<IActionResult> Posts()
         {
             HttpClient httpClient = _httpClientFactory.CreateClient("fake-api");
-            return await httpClient.GetStringAsync("posts");
+            var result = await httpClient.GetStringAsync("posts");
+
+            return RedirectToAction(nameof(CategoriesController.Index), "Categories");
         }
     }
 }
