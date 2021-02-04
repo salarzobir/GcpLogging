@@ -1,10 +1,12 @@
 ﻿using GcpLogging.Data;
+using Google.Cloud.Diagnostics.Common;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 
 namespace GcpLogging
 {
@@ -24,6 +26,11 @@ namespace GcpLogging
 
             services.AddDbContext<GcpLoggingContext>(options =>
                     options.UseNpgsql(Configuration.GetConnectionString("GcpLoggingContext")));
+
+            services.AddHttpClient("fake-api", c =>
+            {
+                c.BaseAddress = new Uri("https://jsonplaceholder.typicode.com");
+            }).AddOutgoingGoogleTraceHandler();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
